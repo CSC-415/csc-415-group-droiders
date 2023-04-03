@@ -9,40 +9,38 @@ import com.bumptech.glide.Glide
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var gameView: GameView
+    private lateinit var scoreTextView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val dinoImageView = findViewById<ImageView>(R.id.dino)
 
+        // Get a reference to the GameView
+        gameView = findViewById(R.id.game_view)
 
-        Glide
-            .with(this)
-            .load(R.drawable.trex)
-            .into(dinoImageView)
-
-        val scoreTextView = findViewById<TextView>(R.id.current_score)
+        // Get a reference to the score TextView
+        scoreTextView = findViewById(R.id.current_score)
         scoreTextView.text = getString(R.string.scoreBeforeStart)
 
-        val hiscoreTextView = findViewById<TextView>(R.id.high_score)
-        hiscoreTextView.text=getString(R.string.hiscore) //later would update score
-
-
+        // Other code for setting up the UI
     }
 
     override fun onStart() {
         super.onStart()
 
-        /*
-        potential logic for handling running total
-        var count = 0
-        count++
-        val scoreTextView = findViewById<TextView>(R.id.current_score)
-        scoreTextView.text = "Count: $count"
-        */
+        // Register a callback to the GameView to update the score
+        gameView.setOnScoreUpdateListener { score ->
+            runOnUiThread {
+                scoreTextView.text = "Score: $score"
+            }
+        }
 
+        gameView.resume()
     }
 
     override fun onDestroy() {
         super.onDestroy()
+       gameView.pause()
     }
 }
