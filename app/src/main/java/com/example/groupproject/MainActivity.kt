@@ -29,14 +29,15 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        // Register a callback to the GameView to update the score
-        gameView.setOnScoreUpdateListener { score ->
-            runOnUiThread {
-                scoreTextView.text = "Score: $score"
-            }
-        }
+        // Register a callback to the 98GameView to update the score
+        gameView.setOnScoreUpdateListener(this@MainActivity::updateScore)
 
         gameView.resume()
+    }
+    private fun updateScore(score: Int) {
+        runOnUiThread {
+            scoreTextView.text = "Score: $score"
+        }
     }
 
     override fun onDestroy() {
