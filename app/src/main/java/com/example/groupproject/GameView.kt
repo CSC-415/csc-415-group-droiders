@@ -35,9 +35,12 @@ class GameView @JvmOverloads constructor(
     private var onScoreUpdateListener: ((score: Int) -> Unit)? = null
 
     private val dinoBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.trex)
-    private val obstacleBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.cact)
-    private val scaledDinoBitmap: Bitmap = Bitmap.createScaledBitmap(dinoBitmap, 100,100, true)
-    private val scaledObstacleBitmap: Bitmap = Bitmap.createScaledBitmap(obstacleBitmap, 50,50, true)
+    private val obstacleBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.bird)
+   // private val birdBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.bird)
+    private val scaledDinoBitmap: Bitmap = Bitmap.createScaledBitmap(dinoBitmap, 200,200, true)
+    private val scaledObstacleBitmap: Bitmap = Bitmap.createScaledBitmap(obstacleBitmap, 100,100, true)
+    //private val scaledBirdBitmap: Bitmap = Bitmap.createScaledBitmap(birdBitmap, 100,100, true)
+
 
     private var isJumping = false
     private var jumpVelocity = 0f
@@ -100,7 +103,18 @@ class GameView @JvmOverloads constructor(
 
             // Draw the game objects onto the buffer canvas
             bufferCanvas.drawColor(Color.WHITE)
+
+            // Draw the path on a separate canvas layer
+            val pathBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            val pathCanvas = Canvas(pathBitmap)
+            paint.color = Color.BLACK
+            paint.strokeWidth = 5f
+            pathCanvas.drawLine(0f,970f, width.toFloat(), 970f, paint)
+
+            // Draw the dinosaur on the buffer canvas
             bufferCanvas.drawBitmap(scaledDinoBitmap, dinoX.toFloat(), dinoY.toFloat(), null)
+
+            // Draw the obstacle on the buffer canvas
             bufferCanvas.drawBitmap(scaledObstacleBitmap, obstacleX.toFloat(), obstacleY.toFloat(), null)
 
             // Draw the score on the buffer canvas
@@ -108,6 +122,9 @@ class GameView @JvmOverloads constructor(
             paint.textSize = 50f
             val scoreText = "Score: $score"
             bufferCanvas.drawText(scoreText, width - paint.measureText(scoreText) - 50f, 100f, paint)
+
+            // Draw the path bitmap onto the buffer canvas
+            bufferCanvas.drawBitmap(pathBitmap, 0f, 0f, null)
 
             // Draw the buffer canvas onto the main canvas
             canvas.drawBitmap(buffer, 0f, 0f, null)
