@@ -209,7 +209,7 @@ class GameView @JvmOverloads constructor(
         }
 
         private fun sleep() {
-            Thread.sleep(16)//60fps
+            sleep()//60fps
         }
 
         fun resume() {
@@ -221,7 +221,7 @@ class GameView @JvmOverloads constructor(
         fun pause() {
             try {
                 isPlaying = false
-                thread?.join()
+                //thread?.join()
             } catch (e: InterruptedException) {
                 throw RuntimeException(e)
             }
