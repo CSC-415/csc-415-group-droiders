@@ -31,15 +31,20 @@ class GameView @JvmOverloads constructor(
     private var dinoY = 0
     private var obstacleX = 500
     private var obstacleY = 100
+    private var cactX = 0
+    private var cactY = 0
+    val obstacleType = Random.nextInt(2)
+
 
     private var onScoreUpdateListener: ((score: Int) -> Unit)? = null
 
     private val dinoBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.trex)
     private val obstacleBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.bird)
-   // private val birdBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.bird)
-    private val scaledDinoBitmap: Bitmap = Bitmap.createScaledBitmap(dinoBitmap, 200,200, true)
-    private val scaledObstacleBitmap: Bitmap = Bitmap.createScaledBitmap(obstacleBitmap, 100,100, true)
-    //private val scaledBirdBitmap: Bitmap = Bitmap.createScaledBitmap(birdBitmap, 100,100, true)
+    private val cactBitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.cact)
+    private val scaledDinoBitmap: Bitmap = Bitmap.createScaledBitmap(dinoBitmap, 200, 200, true)
+    private val scaledObstacleBitmap: Bitmap =
+        Bitmap.createScaledBitmap(obstacleBitmap, 100, 100, true)
+    private val scaledcactBitmap: Bitmap = Bitmap.createScaledBitmap(cactBitmap, 100, 100, true)
 
 
     private var isJumping = false
@@ -69,20 +74,30 @@ class GameView @JvmOverloads constructor(
         // handle click event
         return true
     }
+
     init {
         holder.addCallback(object : SurfaceHolder.Callback {
             override fun surfaceCreated(holder: SurfaceHolder) {
                 // Set up initial position of dinosaur and obstacle
                 dinoX = 0
                 dinoY = height - scaledDinoBitmap.height
+
                 obstacleX = width
                 obstacleY = height - scaledObstacleBitmap.height
 
+                cactX = width
+                cactY = 850
                 // Start the game loop
                 resume()
             }
 
-            override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {}
+            override fun surfaceChanged(
+                holder: SurfaceHolder,
+                format: Int,
+                width: Int,
+                height: Int
+            ) {
+            }
 
             override fun surfaceDestroyed(holder: SurfaceHolder) {
                 // Pause the game loop
@@ -93,10 +108,10 @@ class GameView @JvmOverloads constructor(
     }
 
     private fun draw() {
+
         if (holder.surface.isValid) {
             // Lock the canvas before drawing
             val canvas = holder.lockCanvas()
-
             // Create a new canvas for double buffering
             val buffer = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
             val bufferCanvas = Canvas(buffer)
@@ -109,19 +124,36 @@ class GameView @JvmOverloads constructor(
             val pathCanvas = Canvas(pathBitmap)
             paint.color = Color.BLACK
             paint.strokeWidth = 5f
-            pathCanvas.drawLine(0f,970f, width.toFloat(), 970f, paint)
+            pathCanvas.drawLine(0f, 970f, width.toFloat(), 970f, paint)
 
             // Draw the dinosaur on the buffer canvas
             bufferCanvas.drawBitmap(scaledDinoBitmap, dinoX.toFloat(), dinoY.toFloat(), null)
 
+
             // Draw the obstacle on the buffer canvas
-            bufferCanvas.drawBitmap(scaledObstacleBitmap, obstacleX.toFloat(), obstacleY.toFloat(), null)
+            if (Random.nextInt(2) == 0) {
+
+
+                bufferCanvas.drawBitmap(
+                    scaledObstacleBitmap,
+                    obstacleX.toFloat(),
+                    obstacleY.toFloat(),
+                    null
+                )
+            } else {
+                bufferCanvas.drawBitmap(scaledcactBitmap, cactX.toFloat(), cactY.toFloat(), null)
+            }
 
             // Draw the score on the buffer canvas
             paint.color = Color.BLACK
             paint.textSize = 50f
             val scoreText = "Score: $score"
-            bufferCanvas.drawText(scoreText, width - paint.measureText(scoreText) - 50f, 100f, paint)
+            bufferCanvas.drawText(
+                scoreText,
+                width - paint.measureText(scoreText) - 50f,
+                100f,
+                paint
+            )
 
             // Draw the path bitmap onto the buffer canvas
             bufferCanvas.drawBitmap(pathBitmap, 0f, 0f, null)
@@ -151,7 +183,9 @@ class GameView @JvmOverloads constructor(
         // Update the positions of the dino and obstacle
         //dinoX += 10
         obstacleX -= 10
-        distanceTraveled+=10
+        cactX -= 10
+        distanceTraveled += 10
+
 
         // Update the position of the dino if it's jumping
         if (isJumping) {
@@ -177,8 +211,8 @@ class GameView @JvmOverloads constructor(
             }
         }
         // Check for collision
-        if (dinoX + scaledDinoBitmap.width > obstacleX && dinoX < obstacleX + scaledObstacleBitmap.width &&
-            dinoY + scaledDinoBitmap.height > obstacleY && dinoY < obstacleY + scaledObstacleBitmap.height
+        if (dinoX + scaledDinoBitmap.width > obstacleX && dinoX < obstacleX + scaledObstacleBitmap.width && dinoY + scaledDinoBitmap.height > obstacleY && dinoY < obstacleY + scaledObstacleBitmap.height
+            || dinoX + scaledDinoBitmap.width > cactX && dinoX < cactX + scaledcactBitmap.width && dinoY + scaledDinoBitmap.height > cactY && dinoY < cactY + scaledcactBitmap.height
         ) {
             gameOver()
         }
@@ -193,56 +227,61 @@ class GameView @JvmOverloads constructor(
         if (obstacleX < 0) {
             obstacleX = width + Random.nextInt(500)
             obstacleY = Random.nextInt(height - scaledObstacleBitmap.height)
+
+        }
+        if (cactX < 0) {
+            cactX = width + Random.nextInt(500)
         }
     }
 
 
+    private fun gameOver() {
+        isGameOver = true
+        isPlaying = false
 
-        private fun gameOver() {
-            isGameOver = true
+        // Show a message to the user that the game is over
+        val handler = Handler(Looper.getMainLooper())
+        handler.post {
+            val alertDialog = AlertDialog.Builder(context)
+                .setTitle("Game Over")
+                .setMessage("Your score is $score")
+                .setPositiveButton("Restart") { _, _ ->
+                    // Restart the game
+                    isGameOver = false
+                    isPlaying = true
+                    score = 0
+                    dinoX = 0
+                    obstacleX = 500
+                    obstacleY = 100
+                    cactY=850
+                    cactX=900
+                    resume()
+                }
+                .setCancelable(false)
+                .create()
+
+            alertDialog.show()
+        }
+    }
+
+    private fun sleep() {
+        Thread.sleep(16)//60fps
+    }
+
+    fun resume() {
+        isPlaying = true
+        thread = Thread(this)
+        thread?.start()
+    }
+
+    fun pause() {
+        try {
             isPlaying = false
-
-            // Show a message to the user that the game is over
-            val handler = Handler(Looper.getMainLooper())
-            handler.post {
-                val alertDialog = AlertDialog.Builder(context)
-                    .setTitle("Game Over")
-                    .setMessage("Your score is $score")
-                    .setPositiveButton("Restart") { _, _ ->
-                        // Restart the game
-                        isGameOver = false
-                        isPlaying = true
-                        score = 0
-                        dinoX = 0
-                        obstacleX = 500
-                        obstacleY = 100
-                        resume()
-                    }
-                    .setCancelable(false)
-                    .create()
-
-                alertDialog.show()
-            }
+            thread?.join()
+        } catch (e: InterruptedException) {
+            throw RuntimeException(e)
         }
-
-        private fun sleep() {
-            Thread.sleep(16)//60fps
-        }
-
-        fun resume() {
-            isPlaying = true
-            thread = Thread(this)
-            thread?.start()
-        }
-
-        fun pause() {
-            try {
-                isPlaying = false
-                thread?.join()
-            } catch (e: InterruptedException) {
-                throw RuntimeException(e)
-            }
-        }
+    }
 
     fun setOnScoreUpdateListener(listener: (score: Int) -> Unit) {
         onScoreUpdateListener = listener
