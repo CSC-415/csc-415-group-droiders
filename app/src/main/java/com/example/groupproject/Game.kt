@@ -37,10 +37,13 @@ class Game(context: Context) : SurfaceView(context),
     private var obstacleList: MutableList<Obstacle>
     private var animator: Animator
     private var score:Int
+    private var hiScore:Int
+
 
 
     init{
         score = 0
+        hiScore=0
         // Get surface holder and add callback
         val surfaceHolder = holder
         surfaceHolder.addCallback(this)
@@ -90,6 +93,8 @@ class Game(context: Context) : SurfaceView(context),
 
         val scoreText = "Score: $score"
         canvas.drawText(scoreText, width - paint.measureText(scoreText) - 50f, 200f, paint)
+        val hiScoreText = "High Score: $hiScore"
+        canvas.drawText(hiScoreText, width - paint.measureText(hiScoreText) - 50f, 150f, paint)
 
 
         if(dino.getIsDead()){
@@ -169,10 +174,15 @@ class Game(context: Context) : SurfaceView(context),
         handler.post {
             val alertDialog = AlertDialog.Builder(context)
                 .setTitle("Game Over")
-                .setMessage("Your score is $score")
+                .setMessage("Your score is $score, the current high-score is: $hiScore")
                 .setPositiveButton("Restart") { _, _ ->
                     // Restart the game
-                    score = 0
+                    if(score>hiScore) {
+                        hiScore=score
+                    }
+
+                        score = 0
+
                     dino.positionY = 660.0
                     obstacleList.clear()
                     gameOver = false // reset game over flag
