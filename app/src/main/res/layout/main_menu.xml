@@ -9,8 +9,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="48sp"
-        android:text="Dino game"
+        android:textSize="40sp"
+        android:fontFamily="@font/press_start_2p"
+        android:text="DINO RUN"
         app:layout_constraintBottom_toTopOf="@id/play"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -20,7 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play"
-        android:textSize="64sp"
+        android:textSize="50sp"
+        android:fontFamily="@font/press_start_2p"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -30,19 +32,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="OPTIONS"
+        android:fontFamily="@font/press_start_2p"
         android:textSize="40sp"
         app:layout_constraintTop_toBottomOf="@id/play"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/settings"/>
+        android:id="@+id/options"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textColor="#000000"
-        android:text="High Score"
+        android:fontFamily="@font/press_start_2p"
+        android:text="HI SCORE"
         android:id="@+id/highScoreTxt"
         android:layout_margin="16dp"
         app:layout_constraintRight_toRightOf="parent"
