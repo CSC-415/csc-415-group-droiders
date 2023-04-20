@@ -1,22 +1,30 @@
 package com.example.groupproject
 
 
+import android.R.attr.button
 import android.os.Bundle
-import android.widget.TextView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.groupproject.databinding.MainMenuBinding
 
 
 class MainActivity : AppCompatActivity() {
     private var game: Game? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = MainMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-
-        // Set content view to game, so that objects in the Game class can be rendered to the screen
-        game = Game(this)
-        setContentView(game)
-        // Other code for setting up the UI
+        val playButton = binding.play
+        playButton.setOnClickListener(View.OnClickListener {
+            game = Game(this)
+            setContentView(game)
+        })
+        val optionsButton = binding.options
+        optionsButton.setOnClickListener(View.OnClickListener {
+            setContentView(R.layout.fragment_options_menu)
+        })
     }
 
     override fun onStart() {
