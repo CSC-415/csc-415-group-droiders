@@ -10,6 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.groupproject.MainActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.example.groupproject.databinding.MainMenuBinding
 
 class LeaderboardFragment : Fragment() {
     override fun onCreateView(
