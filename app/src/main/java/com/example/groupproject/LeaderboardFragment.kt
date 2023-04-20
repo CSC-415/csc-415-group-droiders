@@ -2,6 +2,7 @@ package com.example.groupproject
 
 import com.example.groupproject.data.leaderboard.ScoresData
 
+import com.example.groupproject.R.layout.leaderboard
 import com.example.groupproject.Game
 import android.content.Context
 import android.os.Bundle
