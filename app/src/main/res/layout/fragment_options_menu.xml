@@ -17,7 +17,7 @@
         android:textSize="36sp"
         android:layout_margin="24sp"/>
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@id/SoundsText"
         app:layout_constraintEnd_toEndOf="@id/Music"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginRight="72sp"/>
+        android:layout_marginRight="84sp"/>
 
     <CheckBox
         android:checked="true"
@@ -119,7 +119,9 @@
         app:layout_constraintEnd_toStartOf="@id/Normal"
         android:text="Easy"
         android:fontFamily="@font/press_start_2p"
-        android:layout_margin="12sp"/>
+        android:layout_marginTop="12sp"
+        android:layout_marginStart="60sp"
+        android:layout_marginEnd="12sp"/>
     <Button
         android:id="@+id/Normal"
         android:layout_width="wrap_content"
@@ -129,7 +131,9 @@
         app:layout_constraintEnd_toStartOf="@id/Nightmare"
         android:fontFamily="@font/press_start_2p"
         android:text="Normal"
-        android:layout_margin="12sp"/>
+        android:layout_marginTop="12sp"
+        android:layout_marginStart="24sp"
+        android:layout_marginEnd="12sp"/>
     <Button
         android:id="@+id/Nightmare"
         android:layout_width="wrap_content"

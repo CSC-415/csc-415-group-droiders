@@ -13,6 +13,7 @@ class OptionsMenu : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(fragment_options_menu, container, false)
 
     }
@@ -21,6 +22,10 @@ class OptionsMenu : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.back -> {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+                return true
+            }
             R.id.Sounds -> {
                 // Handle menu item click for sound effects
                 return true
