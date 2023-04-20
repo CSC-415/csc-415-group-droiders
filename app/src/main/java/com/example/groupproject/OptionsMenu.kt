@@ -12,6 +12,7 @@ class OptionsMenu : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(fragment_options_menu, container, false)
+
     }
 
 
@@ -26,7 +27,7 @@ class OptionsMenu : Fragment() {
                 return true
             }
             R.id.Theme_Button -> {
-                // Handle menu item click changing the theme
+
                 return true
             }
             R.id.Easy -> {
