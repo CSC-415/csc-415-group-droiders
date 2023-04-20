@@ -7,6 +7,7 @@ import com.example.groupproject.GameDisplay
 import com.example.groupproject.GameLoop
 import com.example.groupproject.R
 import com.example.groupproject.graphics.Animator
+import com.example.groupproject.Game
 
 public class Obstacle(
     context: Context,
@@ -31,10 +32,7 @@ public class Obstacle(
     }
 
     override fun update() {
-        velocityX = 20.0
         positionX -= velocityX
-
-
     }
 
 
@@ -50,7 +48,7 @@ public class Obstacle(
     companion object {
         private val SPEED_PIXELS_PER_SECOND: Double = Dino.SPEED_PIXELS_PER_SECOND * 1.0
         private val MAX_SPEED = SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS
-        private val SPAWNS_PER_MINUTE = 20.0
+        private var SPAWNS_PER_MINUTE = 40.0
         private val SPAWNS_PER_SECOND = SPAWNS_PER_MINUTE / 60.0
         private val UPDATES_PER_SPAWN = GameLoop.MAX_UPS / SPAWNS_PER_SECOND
         private var updatesUntilNextSpawn = UPDATES_PER_SPAWN
@@ -63,5 +61,7 @@ public class Obstacle(
                 false
             }
         }
+
     }
+
 }

@@ -13,7 +13,7 @@ class SpriteSheet(context: Context) {
         val bitmapOptions = BitmapFactory.Options()
         bitmapOptions.inScaled = false
         val bitmap1 =
-            BitmapFactory.decodeResource(context.resources, R.drawable.sprite_sheet, bitmapOptions)
+            BitmapFactory.decodeResource(context.resources, R.drawable.sprite_sheet_transparent, bitmapOptions)
         bitmap = Bitmap.createScaledBitmap(bitmap1, 2404*3, 130*3, false);
         //bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.sprite_sheet, bitmapOptions)
     }

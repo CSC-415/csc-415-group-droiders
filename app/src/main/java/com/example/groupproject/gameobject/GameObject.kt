@@ -1,6 +1,7 @@
 package com.example.groupproject.gameobject
 
 import android.graphics.Canvas
+import com.example.groupproject.Game
 import com.example.groupproject.GameDisplay
 
 abstract class GameObject{
@@ -8,7 +9,7 @@ abstract class GameObject{
     var positionX = 0.0;
     var positionY = 0.0;
     var velocityY = 0.0;
-    var velocityX = 0.0;
+    var velocityX = 20.0;
     var directionX = 0.0;
     var directionY = 0.0;
     constructor() {}

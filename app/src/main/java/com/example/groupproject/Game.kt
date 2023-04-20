@@ -1,6 +1,7 @@
 package com.example.groupproject
 
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -12,8 +13,11 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.groupproject.gameobject.Circle
 import com.example.groupproject.gameobject.Dino
@@ -26,6 +30,7 @@ import com.example.groupproject.graphics.SpriteSheet
 
 class Game(context: Context) : SurfaceView(context),
     SurfaceHolder.Callback {
+
 
     private val dino: Dino
     private var gameLoop: GameLoop
@@ -96,12 +101,6 @@ class Game(context: Context) : SurfaceView(context),
 
         }
 
-
-
-
-
-
-
     }
 
     fun update() {
@@ -113,6 +112,7 @@ class Game(context: Context) : SurfaceView(context),
 
             // Spawn enemy
             if (Obstacle.readyToSpawn()) {
+
                 obstacleList += Obstacle(
                     context,
                     (2000..4000).random().toDouble(),
@@ -121,9 +121,21 @@ class Game(context: Context) : SurfaceView(context),
                     animator,
                     dino
                 );
+
             }
+
             for (obstacle in obstacleList) {
+
+                if(score < 1000){
+                    obstacle.velocityX = 20 + 0.02 * score
+                }
+                else {
+                    obstacle.velocityX = 20 + 0.03 * score
+                }
+//
                 obstacle.update()
+
+
             }
 
 
@@ -216,4 +228,7 @@ class Game(context: Context) : SurfaceView(context),
     fun pause() {
         gameLoop.stopLoop()
     }
+
+
+
 }
