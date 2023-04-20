@@ -1,6 +1,7 @@
 package com.example.groupproject
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -187,6 +188,11 @@ class Game(context: Context) : SurfaceView(context),
                     obstacleList.clear()
                     gameOver = false // reset game over flag
                     gameLoop.startLoop()
+                }
+                .setNegativeButton("Menu") { _, _ ->
+                    val intent = Intent(context, MainActivity::class.java)
+                    context.startActivity(intent)
+
                 }
                 .setCancelable(false)
                 .create()
