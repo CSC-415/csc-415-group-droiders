@@ -13,13 +13,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
         android:text="Options"
-=======
-        tools:text="Options"
->>>>>>> main
         android:textSize="36sp"
         android:layout_margin="24sp"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,22 +25,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/title"
         android:id="@+id/back"
-<<<<<<< HEAD
         android:text = "BACK"
-        android:fontFamily="press_start_2p"
-=======
-        tools:text = "BACK"
         android:fontFamily="@font/press_start_2p"
->>>>>>> main
-        android:textSize="12sp"
-        />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/SoundsText"
         android:layout_width = "wrap_content"
         android:layout_height= "wrap_content"
         android:text = "SFX"
-        android:fontFamily="press_start_2p"
+        android:fontFamily="@font/press_start_2p"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/MusicText"
@@ -55,7 +46,7 @@
         android:layout_width = "wrap_content"
         android:layout_height= "wrap_content"
         android:text = "Music"
-        android:fontFamily="press_start_2p"
+        android:fontFamily="@font/press_start_2p"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toEndOf="@id/SoundsText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +54,7 @@
         android:layout_margin="12sp" />
 
     <CheckBox
+        android:checked="true"
         android:id="@+id/Sounds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,6 +64,7 @@
         android:layout_marginRight="72sp"/>
 
     <CheckBox
+        android:checked="true"
         android:id="@+id/Music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,19 +82,11 @@
         app:layout_constraintTop_toBottomOf="@id/Sounds"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-        tools:text="Theme name"
-        android:fontFamily="press_start_2p"
         android:text="THEME"
         android:textSize="20sp"
-        android:layout_margin="12sp"/>
+        android:layout_margin="12sp"
+        android:fontFamily="@font/press_start_2p"/>
 
-=======
-        android:fontFamily="@font/press_start_2p"
-        tools:text="THEME NAME"
-        android:textSize="20sp"
-        android:layout_margin="48sp"/>
->>>>>>> main
 
     <Button
         android:id="@+id/Theme_Button"
@@ -120,13 +105,8 @@
         app:layout_constraintTop_toBottomOf="@id/Theme_Button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-        android:fontFamily="press_start_2p"
-        android:text="DIFFICULTY"
-=======
         android:fontFamily="@font/press_start_2p"
-        tools:text="DIFFICULTY"
->>>>>>> main
+        android:text="DIFFICULTY"
         android:textSize="24sp"
         android:layout_margin="24sp"/>
 
@@ -138,7 +118,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/Normal"
         android:text="Easy"
-        android:fontFamily="press_start_2p"
+        android:fontFamily="@font/press_start_2p"
         android:layout_margin="12sp"/>
     <Button
         android:id="@+id/Normal"
@@ -147,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@id/Difficulty"
         app:layout_constraintStart_toEndOf="@id/Easy"
         app:layout_constraintEnd_toStartOf="@id/Nightmare"
-        android:fontFamily="press_start_2p"
+        android:fontFamily="@font/press_start_2p"
         android:text="Normal"
         android:layout_margin="12sp"/>
     <Button
@@ -158,7 +138,7 @@
         app:layout_constraintStart_toEndOf="@id/Normal"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Nightmare"
-        android:fontFamily="press_start_2p"
+        android:fontFamily="@font/press_start_2p"
         android:layout_margin="12sp"/>
 
 
