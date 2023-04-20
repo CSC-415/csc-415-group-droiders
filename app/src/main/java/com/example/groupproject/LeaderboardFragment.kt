@@ -20,10 +20,10 @@ class LeaderboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.leaderboard, container, false)
+        return inflater.inflate(leaderboard, container, false)
     }
-
-    init {
+/*
+    override fun  {
         val newScore = 0
         val scoresData = context?.let { ScoresData(newScore, it) }
         val scoresArr = scoresData?.getScoresArr()
@@ -32,4 +32,7 @@ class LeaderboardFragment : Fragment() {
             println("${i + 1}. ${scoresArr?.get(i)}")
         }
     }
+
+ */
+
 }
