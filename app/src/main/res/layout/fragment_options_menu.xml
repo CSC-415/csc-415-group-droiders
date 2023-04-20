@@ -13,10 +13,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Options"
+        android:text="Options"
         android:textSize="36sp"
         android:layout_margin="24sp"/>
-    <TextView
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="15dp"
@@ -24,47 +25,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/title"
         android:id="@+id/back"
-        tools:text = "BACK"
+        android:text = "BACK"
         android:fontFamily="@font/press_start_2p"
-        android:textSize="12sp"
-        />
+        android:textSize="12sp" />
 
-    <ImageView
+    <TextView
         android:id="@+id/SoundsText"
-        android:layout_width = "50dp"
-        android:layout_height= "50dp"
+        android:layout_width = "wrap_content"
+        android:layout_height= "wrap_content"
+        android:text = "SFX"
+        android:fontFamily="@font/press_start_2p"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/MusicText"
         android:textSize="24sp"
-        android:layout_margin="24sp" />
+        android:layout_margin="12sp" />
 
-    <ImageView
+    <TextView
         android:id="@+id/MusicText"
-        android:layout_width = "50dp"
-        android:layout_height= "50dp"
+        android:layout_width = "wrap_content"
+        android:layout_height= "wrap_content"
+        android:text = "Music"
+        android:fontFamily="@font/press_start_2p"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintStart_toEndOf="@id/SoundsText"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="24sp"
-        android:layout_margin="24sp" />
+        android:layout_margin="12sp" />
 
     <CheckBox
+        android:checked="true"
         android:id="@+id/Sounds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/SoundsText"
+        app:layout_constraintEnd_toEndOf="@id/Music"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/Music"
-        android:layout_margin="24sp"/>
+        android:layout_marginRight="84sp"/>
+
     <CheckBox
+        android:checked="true"
         android:id="@+id/Music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/SoundsText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/Sounds"
-        android:layout_margin="24sp"/>
+        android:layout_marginLeft="24sp"/>
 
 
 
@@ -75,10 +82,11 @@
         app:layout_constraintTop_toBottomOf="@id/Sounds"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:fontFamily="@font/press_start_2p"
-        tools:text="THEME NAME"
+        android:text="THEME"
         android:textSize="20sp"
-        android:layout_margin="48sp"/>
+        android:layout_margin="12sp"
+        android:fontFamily="@font/press_start_2p"/>
+
 
     <Button
         android:id="@+id/Theme_Button"
@@ -87,8 +95,8 @@
         app:layout_constraintTop_toBottomOf="@id/Theme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Next"
-        android:layout_margin="24sp"/>
+        android:fontFamily="press_start_2p"
+        android:text="Light/Dark"/>
 
     <TextView
         android:id="@+id/Difficulty"
@@ -98,9 +106,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/press_start_2p"
-        tools:text="DIFFICULTY"
+        android:text="DIFFICULTY"
         android:textSize="24sp"
-        android:layout_margin="48sp"/>
+        android:layout_margin="24sp"/>
 
     <Button
         android:id="@+id/Easy"
@@ -109,10 +117,11 @@
         app:layout_constraintTop_toBottomOf="@id/Difficulty"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/Normal"
-        tools:text="Easy"
-        android:layout_marginTop="24sp"
-        android:layout_marginRight="12sp"
-        android:layout_marginLeft="12sp"/>
+        android:text="Easy"
+        android:fontFamily="@font/press_start_2p"
+        android:layout_marginTop="12sp"
+        android:layout_marginStart="60sp"
+        android:layout_marginEnd="12sp"/>
     <Button
         android:id="@+id/Normal"
         android:layout_width="wrap_content"
@@ -120,10 +129,11 @@
         app:layout_constraintTop_toBottomOf="@id/Difficulty"
         app:layout_constraintStart_toEndOf="@id/Easy"
         app:layout_constraintEnd_toStartOf="@id/Nightmare"
-        tools:text="Normal"
-        android:layout_marginTop="24sp"
-        android:layout_marginRight="12sp"
-        android:layout_marginLeft="12sp"/>
+        android:fontFamily="@font/press_start_2p"
+        android:text="Normal"
+        android:layout_marginTop="12sp"
+        android:layout_marginStart="24sp"
+        android:layout_marginEnd="12sp"/>
     <Button
         android:id="@+id/Nightmare"
         android:layout_width="wrap_content"
@@ -131,10 +141,9 @@
         app:layout_constraintTop_toBottomOf="@id/Difficulty"
         app:layout_constraintStart_toEndOf="@id/Normal"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Nightmare"
-        android:layout_marginTop="24sp"
-        android:layout_marginRight="12sp"
-        android:layout_marginLeft="12sp"/>
+        android:text="Nightmare"
+        android:fontFamily="@font/press_start_2p"
+        android:layout_margin="12sp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

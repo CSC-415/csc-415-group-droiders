@@ -13,13 +13,19 @@ class OptionsMenu : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(fragment_options_menu, container, false)
+
     }
 
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.back -> {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+                return true
+            }
             R.id.Sounds -> {
                 // Handle menu item click for sound effects
                 return true
@@ -29,7 +35,7 @@ class OptionsMenu : Fragment() {
                 return true
             }
             R.id.Theme_Button -> {
-                // Handle menu item click changing the theme
+
                 return true
             }
             R.id.Easy -> {
