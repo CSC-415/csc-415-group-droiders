@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity() {
         optionsButton.setOnClickListener(View.OnClickListener {
             setContentView(R.layout.fragment_options_menu)
         })
+        val scoresButton = binding.options
+        scoresButton.setOnClickListener(View.OnClickListener {
+            setContentView(R.layout.leaderboard)
+        })
     }
 
     override fun onStart() {
