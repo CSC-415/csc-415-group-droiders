@@ -1,11 +1,13 @@
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import com.example.groupproject.Game
 import com.example.groupproject.R
 import com.example.groupproject.R.layout.fragment_options_menu
+import com.example.groupproject.databinding.FragmentOptionsMenuBinding
+import com.example.groupproject.databinding.MainMenuBinding
 
 class OptionsMenu : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -13,6 +15,7 @@ class OptionsMenu : Fragment() {
     ): View? {
         return inflater.inflate(fragment_options_menu, container, false)
     }
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
