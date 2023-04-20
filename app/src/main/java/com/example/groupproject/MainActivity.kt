@@ -1,47 +1,41 @@
 package com.example.groupproject
 
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R.attr.button
+import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
-import com.bumptech.glide.Glide
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.example.groupproject.databinding.MainMenuBinding
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var gameView: GameView
-    private lateinit var scoreTextView: TextView
-
+    private var game: Game? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = MainMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        // Get a reference to the GameView
-        gameView = findViewById(R.id.game_view)
-
-        // Get a reference to the score TextView
-        scoreTextView = findViewById(R.id.current_score)
-        scoreTextView.text = getString(R.string.scoreBeforeStart)
-
-        // Other code for setting up the UI
+        val playButton = binding.play
+        playButton.setOnClickListener(View.OnClickListener {
+            game = Game(this)
+            setContentView(game)
+        })
+        val optionsButton = binding.options
+        optionsButton.setOnClickListener(View.OnClickListener {
+            setContentView(R.layout.fragment_options_menu)
+        })
     }
 
     override fun onStart() {
         super.onStart()
 
-        // Register a callback to the 98GameView to update the score
-        gameView.setOnScoreUpdateListener(this@MainActivity::updateScore)
 
-        gameView.resume()
     }
-    private fun updateScore(score: Int) {
-        runOnUiThread {
-            scoreTextView.text = "Score: $score"
-        }
-    }
+
 
     override fun onDestroy() {
         super.onDestroy()
-       gameView.pause()
     }
 }
