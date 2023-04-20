@@ -45,7 +45,7 @@ class Dino(
         if(jumpState){
             positionY -= velocityY
             if(positionY <= 200) {
-                velocityY = -10.0
+                velocityY = -40.0
             }
             if(positionY>=660.0){
                 positionY=660.0

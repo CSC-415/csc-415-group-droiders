@@ -2,6 +2,7 @@ package com.example.groupproject
 
 
 import android.R.attr.button
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
