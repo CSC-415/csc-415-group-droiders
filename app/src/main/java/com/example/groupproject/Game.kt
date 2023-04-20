@@ -245,6 +245,9 @@ class Game(context: Context) : SurfaceView(context),
         gameLoop.stopLoop()
     }
 
+    fun getScore(): Int {
+        return score
+    }
 
 
 }
